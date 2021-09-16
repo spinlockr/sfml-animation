@@ -17,7 +17,6 @@ int main(){
     sf::IntRect playerRect( 0, 38, 50, 40 );
     sf::Sprite  playerSprite(playerTexture, playerRect);
     playerSprite.setOrigin(-100, -325);
-
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     while (window.isOpen())
@@ -26,46 +25,46 @@ int main(){
             
             if (event.type == sf::Event::Closed) window.close(); //Close Window  
             
-            if (event.type == sf::Event::KeyPressed){ 
-                
-                // if(event.key.code == sf::Keyboard::Right){    
-                //     isMovingRight = true; 
-                //     moveRightClock.restart(); 
-                //     std::cout<<"Right Press"<<std::endl;
-                // }//Right Key Press 
+            if (event.type == sf::Event::KeyPressed){  
+                if(event.key.code == sf::Keyboard::Right){    
+                    isMovingRight = true; 
+                    moveRightClock.restart(); 
+                    std::cout<<"Right Press"<<std::endl;
+                } 
+            }; //KeyPressed
 
-                if (event.key.code == sf::Keyboard::Left) { 
+            if (event.type == sf::Event::KeyPressed){
+                if(event.key.code == sf::Keyboard::Left) { 
                     isMovingLeft = true; 
                     moveLeftClock.restart(); 
                     std::cout<<"Left Press"<<std::endl;
-                }//Left Key Press 
-
-            }//Key Pressed Events
+                }
+            }//KeyPressed
 
             if(event.type == sf::Event::KeyReleased){
-                
                 if(event.key.code == sf::Keyboard::Right){
                     isMovingRight = false; 
                     playerRect.left = 0;
                     playerSprite.setTextureRect(playerRect);
                     std::cout<<"Right Relase"<<std::endl;
-                }//Right Key Release
+                }
+            }//KeyRelease
 
+            if(event.type == sf::Event::KeyReleased){
              if(event.key.code == sf::Keyboard::Left) { 
                     isMovingLeft = false; 
                     playerRect.left = 0;
                     playerSprite.setTextureRect(playerRect);  
                     std::cout<<"Left Relase"<<std::endl;
-   
-                }//Right Key Release
+                }
+            }//KeyRelease
             
-            }//Key Relased Events 
             
-        }
+            
+        };
 
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-        
         if (isMovingRight && moveRightClock.getElapsedTime().asSeconds() > 0.05) { 
             
             playerRect.left += 50;
